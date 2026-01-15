@@ -9,11 +9,12 @@ spec:
   groups:
     - name: app.rules
       rules:
-        - alert: PodDown
-          expr: kube_pod_status_ready{condition="true"} == 0
+        - alert: AppReplicaCountLow
+          expr: |
+            kube_deployment_status_replicas_available{namespace="default", deployment="project2"} < 3
           for: 2m
           labels:
             severity: warning
           annotations:
-            summary: "Pod not ready"
-            description: "A pod has been not-ready for more than 2 minutes."
+            summary: "Low number of running replicas"
+            description: "Deployment project2 has fewer than 3 available replicas for more than 2 minutes."
