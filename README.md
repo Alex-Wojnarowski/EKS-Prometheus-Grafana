@@ -1,6 +1,9 @@
 Monitoring and Alerting for an Application on AWS EKS
+
 Project Overview
+
 This project adds monitoring and alerting to an application running in an AWS EKS cluster. The goal was to extend the existing Kubernetes deployment from Project 2 with basic observability, so that the application’s health and resource usage can be monitored in real time.
+
 The project focuses on setting up Prometheus and Grafana inside the cluster, creating a custom alert for application availability, and validating that the alert behaves correctly when the application state changes.
 ________________________________________
 Environment and Setup
@@ -15,6 +18,7 @@ Once installed, Prometheus automatically started scraping metrics related to:
 - CPU and memory usage
 - replica availability
 - namespace-level resource usage
+  
 Grafana dashboards were used to confirm that metrics were being collected correctly and to observe how the application behaves during normal operation.
 ________________________________________
 Application Alerting
@@ -23,6 +27,7 @@ This alert was designed to show three possible states:
 - inactive when the application is healthy
 - pending when availability drops but the condition has not lasted long enough
 - firing when the condition persists
+  
 ________________________________________
 Alert Testing and Validation
 To test the alert, the deployment was intentionally modified to reduce the number of available replicas. This caused the alert to move from inactive to pending, and finally to firing after the configured time window.
@@ -31,6 +36,7 @@ Screenshots included in the repository show:
 - the alert in inactive, pending, and firing states
 - application resource usage in Grafana
 - metrics collected from running pods
+  
 ________________________________________
 Project Scope
 This project focuses only on monitoring and alerting. The application and cluster were already created in Project 2, and the CI/CD pipeline is intentionally not included here.
@@ -42,4 +48,5 @@ What This Project Demonstrates
 - creating a custom Prometheus alert
 - validating alert behavior by simulating application issues
 - visualizing application health using Grafana dashboards
+  
 
